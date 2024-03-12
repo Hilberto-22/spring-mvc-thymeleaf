@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Cadastro de Usuário</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+		integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+	<style>
+		html,
+		body {
+			height: 100%;
+			padding-top: 60px;
+			margin-bottom: 60px;
+		}
+
+		.card-body {
+			padding: 20px;
+		}
+
+		.footer {
+			position: fixed;
+			bottom: 0;
+			width: 100%;
+			background-color: #f5f5f5;
+			padding: 10px 0;
+			text-align: center;
+		}
+	</style>
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+		<a class="navbar-brand" href="/intro-spring-thymeleaf/usuario/todos">Lista</a>
+	</nav>
+
+	<div class="container">
+		<h1>Cadastro de Usuários</h1>
+		<hr>
+		<div>
+			<form th:action="${usuario.id == null} ? @{/usuario/save} : @{/usuario/update}" th:object="${usuario}"
+				method="post">
+				<input type="hidden" th:field="*{id}" />
+				<div class="card">
+					<div class="card-header">
+						Dados pessoais
+					</div>
+					<div class="card-body">
+						<div class="row">
+							<div class="form-group col-md-8">
+								<label for="nome">Nome completo:</label>
+								<input type="text" class="form-control" id="nome" name="nome" th:field="*{nome}" />
+								<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"
+									class="label label-danger"></span>
+							</div>
+							<div class="form-group col-md-4">
+								<label for="cpf">CPF:</label>
+								<input type="text" class="form-control" id="cpf" name="cpf" th:field="*{cpf}" />
+								<span th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}"
+									class="label label-danger"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group col-md-8">
+								<label for="nomeMae">Nome mãe:</label>
+								<input type="text" class="form-control" id="nomeMae" name="nomeMae"
+									th:field="*{nomeMae}" />
+									<span th:if="${#fields.hasErrors('nomeMae')}" th:errors="*{nomeMae}"
+									class="label label-danger"></span>
+							</div>
+							<div class="form-group col-md-4 ">
+								<label for="dtNascimento">Data de Nascimento:</label>
+								<input type="date" class="form-control" id="dtNascimento" name="dtNascimento"
+									th:field="*{dtNascimento}" />
+									<span th:if="${#fields.hasErrors('dtNascimento')}" th:errors="*{dtNascimento}"
+									class="label label-danger"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group col-md-8">
+								<label for="nomePai">Nome do pai</label>
+								<input type="text" class="form-control" id="nomePai" name="nomePai"
+									th:field="*{nomePai}" />
+									<span th:if="${#fields.hasErrors('nomePai')}" th:errors="*{nomePai}"
+									class="label label-danger"></span>
+							</div>
+							<div class="form-group col-md-4">
+								<label for="sexo">Sexo:</label>
+								<select th:field="*{sexo}" class="form-control" id="sexo">
+									<option th:each="sexo : ${sexos}" th:value="${sexo.desc}" th:text="${sexo.desc}">F
+									</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary mb-2">Salvar</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<footer class="footer bg-dark text-white">
+		<div class="container text-center">
+			<span>&copy; Desenvolvido por Hilberto Fernandes - Desenvolvedor Java</span>
+		</div>
+	</footer>
+
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+		integrity="sha384-Qgdj+8dM4u4JoGCIpLwtHkcjgdYwXeUPtx5jRvFp+OjMTk8h/a15K+z31s/Enfl+"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+		integrity="sha384-6r7VXAp3e3rbNwOFzfr4XyqzT+LMg4g+wO9l3eO+Xz/xEHj6hL6P4h/kaUd/ZYSF"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>
